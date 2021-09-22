@@ -1,6 +1,6 @@
 const { countLinesInFile } = require('./CountFile');
 
-const 
+const
     fs = require('fs'),
     args = process.argv.slice(2)
 ;
@@ -14,11 +14,5 @@ if (args[0] != undefined) {
 } else {
     throw new Error("Please provide source code files to count.");
 }
-
-/* 
-
-*/
-
-//
 
 countLinesInFile(args[0]);
