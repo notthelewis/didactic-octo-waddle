@@ -12,7 +12,6 @@ class PlaceHolder extends EventEmitter {
             /(^(\r\n|\n|\r)$)|(^(\r\n|\n|\r))|^\s*$/gm // Blank line, catering for different types of newline indicator
         ];
 
-
         this.correspondingStates = new Map();
         this.correspondingStates.set(0, 'MLComment');
         this.correspondingStates.set(1, 'codeLine');
