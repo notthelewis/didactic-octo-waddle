@@ -5,14 +5,14 @@ const
     args = process.argv.slice(2)
 ;
 
-if (args[0] != undefined) {
-    for (i in args) {
+function* countAllFiles() {
+    for (let i = 0; i < args.length; i++){
         fs.access(args[i], e => {
-            console.log(`${args[i]} ${e ? 'does not exist' : 'exists'}`);
+            !e ? countLinesInFile(args[i]) : console.log(`${args[i]} does not exist.`);
         });
+        yield;
     }
-} else {
-    throw new Error("Please provide source code files to count.");
+    return;
 }
 
-countLinesInFile(args[0]);
+[...countAllFiles()];

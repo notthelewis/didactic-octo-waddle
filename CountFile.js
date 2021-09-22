@@ -21,12 +21,13 @@ exports.countLinesInFile = (filename) => {
         console: false
     });
 
-
     readInterface.on('line', (thisLine) => {
         placeHolder.getNewStateName(thisLine);
     });
 
     readInterface.on('close', ()=> {
+        console.log(filename);
         counter.emit('fileClosed');
-    });
+
+    });   
 }
