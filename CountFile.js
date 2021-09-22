@@ -1,5 +1,4 @@
-const { count } = require('console');
-const 
+const
     fs = require('fs'),
     readline = require('readline'),
     { CountObject } = require('./CountObject'),
