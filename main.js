@@ -8,8 +8,7 @@ const
 function* countAllFiles() {
     for (let i = 0; i < args.length; i++){
         fs.access(args[i], e => {
-            console.log(`${args[i]} ${e ? 'does not exist' : 'exists'}`);
-            countLinesInFile(args[i]);
+            !e ? countLinesInFile(args[i]) : console.log(`${args[i]} does not exist.`);
         });
         yield;
     }
