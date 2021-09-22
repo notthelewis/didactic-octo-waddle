@@ -7,7 +7,7 @@ class PlaceHolder extends EventEmitter {
         this.interestingRegexes = [
             /\/\*[\s\S]*?/, // Start of multi-line comment
             /[\s\S]*?\*\//, // End of multi-line comment
-            /^\s*?\/\/*/, // Single line comment with nothing at the start of the line
+            /^\s*?\/\/*/, // Single line comment without stuff before it
             /^\S\s*?\/\//, // Single line comment with stuff before it
             /(^(\r\n|\n|\r)$)|(^(\r\n|\n|\r))|^\s*$/gm // Blank line, catering for different types of newline indicator
         ];
