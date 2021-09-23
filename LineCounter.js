@@ -1,13 +1,11 @@
 const { createReadStream } = require('fs');
 const { createInterface } = require('readline');
-const { InterestingRegex } = require('./InterestingRegex');
-const { TallyObject } = require('./Tally');
+const { PatternMatcher } = require('./PatternMatcher');
 
 exports.LineCounter = class LineCounter {
     constructor(fileName) {
         this.fileName = fileName;
-        this.interestingRegex = new InterestingRegex();
-        this.tally = new TallyObject();
+        this.PatternMatcher = new PatternMatcher();
 
         this.lineReaderObject = createInterface({
             input: createReadStream(this.fileName),
@@ -17,7 +15,7 @@ exports.LineCounter = class LineCounter {
 
     async startTally () {
         for await (const line of this.lineReaderObject) {
-            this.matches = this.interestingRegex.checkMatch(line);
+            this.matches = this.PatternMatcher.checkMatch(line);
             console.log(this.matches);
 
         //     if (this.matches.length == 0) {
