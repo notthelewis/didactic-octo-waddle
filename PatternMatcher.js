@@ -1,4 +1,4 @@
-class InterestingRegex {
+class PatternMatcher {
     constructor() {
         this.regexList = new Map();
         this.regexList.set(/\/\*[\s\S]*?/, 'comment_ML_StartComment');
@@ -9,7 +9,7 @@ class InterestingRegex {
     }
 }
 
-InterestingRegex.prototype.checkMatchGenerator = function* (line) {
+PatternMatcher.prototype.checkMatchGenerator = function* (line) {
     let foundRegex;
 
     for (regex of this.regexList) {
@@ -22,8 +22,8 @@ InterestingRegex.prototype.checkMatchGenerator = function* (line) {
     return;
 }
 
-InterestingRegex.prototype.checkMatch = function (line) {
+PatternMatcher.prototype.checkMatch = function (line) {
     return [...this.checkMatchGenerator(line)];
 }
 
-exports.InterestingRegex = InterestingRegex;
+exports.PatternMatcher = PatternMatcher;
