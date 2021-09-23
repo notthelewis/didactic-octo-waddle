@@ -10,7 +10,9 @@ function* countAllFiles() {
         fs.access(args[i], async e => {
             if (!e) {
                 let lineCounter = new LineCounter(args[i]);
-                await lineCounter.startTally();
+
+                let results = await lineCounter.startTally();
+                console.log(args[i], results);
             } else {
                 console.log(e.message);
             }
