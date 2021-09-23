@@ -29,4 +29,5 @@ InterestingRegex.prototype.checkMatchGenerator = function* (line) {
 InterestingRegex.prototype.checkMatch = function (line) {
     return [...this.checkMatchGenerator(line)];
 }
+
 exports.InterestingRegex = InterestingRegex;
