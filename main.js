@@ -1,18 +1,25 @@
-const { countLinesInFile } = require('./CountFile');
+const { LineCounter } = require('./LineCounter');
 
 const
     fs = require('fs'),
     args = process.argv.slice(2)
 ;
 
-if (args[0] != undefined) {
-    for (i in args) {
-        fs.access(args[i], e => {
-            console.log(`${args[i]} ${e ? 'does not exist' : 'exists'}`);
+function* countAllFiles() {
+    for (let i = 0; i < args.length; i++){
+        fs.access(args[i], async e => {
+            if (!e) {
+                let lineCounter = new LineCounter(args[i]);
+
+                let results = await lineCounter.startTally();
+                console.log(args[i], results);
+            } else {
+                console.log(e.message);
+            }
         });
+        yield;
     }
-} else {
-    throw new Error("Please provide source code files to count.");
+    return;
 }
 
-countLinesInFile(args[0]);
+[...countAllFiles()];

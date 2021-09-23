@@ -1,5 +1,5 @@
 /* 
-    LineCounter is an implementation of the Facade design pattern. 
+    LineCounter is a Facade implementation.
     It provides a unified interface to a set of subsystems (lineReader, PatternMatcher, Tallier, Tally)
 */
 
@@ -11,7 +11,6 @@ const { Tallier } = require('./Tallier');
 exports.LineCounter = class LineCounter {
     constructor(fileName) {
         this.fileName = fileName;
-        
         this.lineReaderObject = createInterface({
             input: createReadStream(this.fileName),
             console: false
