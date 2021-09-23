@@ -1,5 +1,3 @@
-const { InterestingRegex } = require("./InterestingRegex");
-
 class TallyObject {
     constructor() {
         this.counter = {
@@ -17,7 +15,7 @@ class TallyObject {
         }
     }
 
-    incrementCodeLine = v => this.incrementCounterProperty('codeLine')(v);
+    incrementCodeLine  = v => this.incrementCounterProperty('codeLine')(v);
     incrementBlankLine = v => this.incrementCounterProperty('blankLine')(v);
     incrementMLComment = v => this.incrementCounterProperty('MLComment')(v);
     incrementSLComment = v => this.incrementCounterProperty('SLComment')(v);
