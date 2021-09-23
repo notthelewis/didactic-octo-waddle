@@ -10,15 +10,11 @@ class PatternMatcher {
 }
 
 PatternMatcher.prototype.checkMatchGenerator = function* (line) {
-    let foundRegex;
-
     for (regex of this.regexList) {
         if (regex[0].test(line)) {
-            foundRegex = true;
             yield regex[1];
         }
     }
-
     return;
 }
 
