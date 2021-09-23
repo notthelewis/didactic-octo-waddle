@@ -1,6 +1,7 @@
 const { createReadStream } = require('fs');
 const { createInterface } = require('readline');
 const { PatternMatcher } = require('./PatternMatcher');
+const { Tallier } = require('./Tallier');
 
 exports.LineCounter = class LineCounter {
     constructor(fileName) {
@@ -11,22 +12,17 @@ exports.LineCounter = class LineCounter {
             input: createReadStream(this.fileName),
             console: false
         });
+
+        this.tallier = new Tallier()
     };
 
     async startTally () {
         for await (const line of this.lineReaderObject) {
             this.matches = this.PatternMatcher.checkMatch(line);
-            console.log(this.matches);
-
-        //     if (this.matches.length == 0) {
-        //         this.tally.incrementCodeLine();
-        //     } else {
-        //         switch (this.matches) {
-        //             case ['']: 
-
-        //         }
-        //     }
+            this.tallier.tallyLine(this.matches);
         }
-        // console.log(this.tally.counter);
+
+        this.tallier.tally.getTotalLines();
+        console.log(this.tallier.tally.counter);
     };
 };
