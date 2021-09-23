@@ -15,16 +15,8 @@ exports.LineTally = class LineTally {
 
     async startTally () {
         for await (const line of this.lineReaderObject) {
-            let matches = this.interestingRegex.checkMatch(line);
-            console.log(line, matches);
+            this.matches = this.interestingRegex.checkMatch(line);
+            console.log(line, this.matches);
         }
-
     }
-
-    /* Read File Line By Line */
-
-    /* Check individual line against list of interesting regexes */
-
-    /*  */
-
 }
