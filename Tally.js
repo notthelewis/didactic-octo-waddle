@@ -1,10 +1,11 @@
 class TallyObject {
     constructor() {
         this.counter = {
-            codeLine: 0,
-            blankLine: 0,
-            MLComment: 0,
-            SLComment: 0,
+            codeLines: 0,
+            blankLines: 0,
+            MLCommentBlocks: 0,
+            MLCommentLines: 0,
+            SLComments: 0,
             totalLines: 0
         };
     }
@@ -15,14 +16,20 @@ class TallyObject {
         }
     }
 
-    incrementCodeLine  = v => this.incrementCounterProperty('codeLine')(v);
-    incrementBlankLine = v => this.incrementCounterProperty('blankLine')(v);
-    incrementMLComment = v => this.incrementCounterProperty('MLComment')(v);
-    incrementSLComment = v => this.incrementCounterProperty('SLComment')(v);
+    incrementCodeLines  = v => this.incrementCounterProperty('codeLines')(v);
+    incrementBlankLines = v => this.incrementCounterProperty('blankLines')(v);
+    incrementMLCommentBlocks = v => this.incrementCounterProperty('MLCommentBlocks')(v);
+    incrementMLCommentLines = v => this.incrementCounterProperty('MLCommentLines')(v);
+    incrementSLComments = v => this.incrementCounterProperty('SLComments')(v);
 
     getTotalLines = () => {
-        this.counter.totalLines = this.counter.blankLine + this.counter.blankLine + this.counter.MLComment + this.counter.SLComment;
-        return this.counter.totalLines;
+        for (const property in this.counter) {
+            if (property != "totalLines") {
+                this.counter.totalLines += this.counter[property];
+            } else {
+                return this.counter.totalLines;
+            }
+        }
     }
 }
 
