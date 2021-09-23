@@ -1,4 +1,4 @@
-const { LineTally } = require('./LineTally');
+const { LineCounter } = require('./LineCounter');
 
 const
     fs = require('fs'),
@@ -9,8 +9,8 @@ function* countAllFiles() {
     for (let i = 0; i < args.length; i++){
         fs.access(args[i], async e => {
             if (!e) {
-                let lineTally = new LineTally(args[i]);
-                await lineTally.startTally();
+                let lineCounter = new LineCounter(args[i]);
+                await lineCounter.startTally();
             } else {
                 console.log(e.message);
             }
