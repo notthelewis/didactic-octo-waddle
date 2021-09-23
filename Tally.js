@@ -1,3 +1,6 @@
+/* 
+    Tally object is the low-level count object which simply keeps a tally of each interesting element we're looking after.
+*/
 class TallyObject {
     constructor() {
         this.counter = {
