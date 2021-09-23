@@ -1,4 +1,5 @@
-const { countLinesInFile } = require('./CountFile');
+// const { readFileLineByLine } = require('./CountFile');
+const { LineTally } = require('./LineTally');
 
 const
     fs = require('fs'),
@@ -7,8 +8,13 @@ const
 
 function* countAllFiles() {
     for (let i = 0; i < args.length; i++){
-        fs.access(args[i], e => {
-            !e ? countLinesInFile(args[i]) : console.log(`${args[i]} does not exist or is inaccesible:\n${e}.`);
+        fs.access(args[i], async e => {
+            if (!e) {
+                let lineTally = new LineTally(args[i]);
+                await lineTally.startTally();
+            } else {
+                console.log(e.message);
+            }
         });
         yield;
     }
