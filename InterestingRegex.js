@@ -19,10 +19,6 @@ InterestingRegex.prototype.checkMatchGenerator = function* (line) {
         }
     }
 
-    if (foundRegex == 'undefined') {
-        yield 'codeLine';
-    }
-
     return;
 }
 
