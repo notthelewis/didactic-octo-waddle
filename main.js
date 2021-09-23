@@ -1,4 +1,3 @@
-// const { readFileLineByLine } = require('./CountFile');
 const { LineTally } = require('./LineTally');
 
 const
