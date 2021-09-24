@@ -18,14 +18,18 @@ multiLineCommentTests = () => {
 }
 
 singleLineCommentTests = () => {
+    let patternMatcher = new PatternMatcher();
     test("Check that passing single-line comment syntax at the start of a line is picked up correctly", ()=> {
-        let patternMatcher = new PatternMatcher();
         let testLine = '// full line, single-line comment';
         expect(patternMatcher.checkMatch(testLine)).toStrictEqual(['comment_SL_StartOfLine']);
     });
 
+    test("Check that passing single-line comment syntax after whitespace on a line is picked up as a comment line", ()=> {
+        let testLine = '    // full line, single-line comment';
+        expect(patternMatcher.checkMatch(testLine)).toStrictEqual(['comment_SL_StartOfLine']);
+    });
+
     test("Check that passing single-line comment syntax at the end of a line is picked up correctly", ()=> {
-        let patternMatcher = new PatternMatcher();
         let testLine = 'validCode(); // comment for this code';
         expect(patternMatcher.checkMatch(testLine)).toStrictEqual(['comment_SL_EndOfLine']);
     });
