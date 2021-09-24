@@ -27,6 +27,7 @@ exports.LineCounter = class LineCounter {
         }
 
         this.tallier.tally.getTotalLines();
+        this.lineReaderObject.close();
         return this.tallier.tally.counter;
     };
 };
