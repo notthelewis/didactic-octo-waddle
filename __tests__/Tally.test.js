@@ -2,7 +2,7 @@ const { TallyObject} = require('../Tally');
 
 runTests = async()=> {
     let tallyTest = new TallyObject();
-    
+
     valid = () => {
         test("Check that passing a correct name into the higher order function causes it to return a function", ()=> {
             expect(typeof tallyTest.incrementCounterProperty('totalLines')).toBe('function');
