@@ -31,11 +31,13 @@ class Tallier {
                     break;
     
                     case "comment_SL_StartOfLine":
-                        this.tally.incrementSLComments();
+                        if (!this.multiLine) this.tally.incrementSLComments();
+                        else this.tally.incrementMLCommentLines();
                     break;
     
                     case "comment_SL_EndOfLine": 
-                        this.tally.incrementCodeLines();
+                        if (!this.multiLine) this.tally.incrementCodeLines();
+                        else this.tally.incrementMLCommentLines();
                     break;
     
                     default: 
