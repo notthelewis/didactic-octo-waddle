@@ -12,7 +12,11 @@ function* countAllFiles() {
                 let lineCounter = new LineCounter(args[i]);
 
                 let results = await lineCounter.startTally();
-                console.log(args[i], results);
+                let toReturn = {};
+                toReturn.name = args[i];
+                toReturn.count = results;
+                // console.log(args[i], results);
+                console.log(toReturn);
             } else {
                 console.log(e.message);
             }
