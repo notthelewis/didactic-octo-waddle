@@ -6,10 +6,10 @@ integrationTest = () => {
         expect(await source_c_counter.startTally()).toStrictEqual({
             codeLines: 5,
             blankLines: 1,
-            MLCommentBlocks: 2,
-            MLCommentLines: 5,
+            MLCommentBlocks: 3,
+            MLCommentLines: 6,
             SLComments: 3,
-            totalLines: 14
+            totalLines: 15
         });
     });
 }
