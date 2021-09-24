@@ -38,8 +38,8 @@ runTests = async()=> {
         });
     }
 
-    valid();
-    invalid();
+    describe("Valid tests", ()=> valid());
+    describe("Invalid tests", ()=> invalid());
 }
 
 runTests();
