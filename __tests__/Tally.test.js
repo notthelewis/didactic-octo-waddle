@@ -18,6 +18,7 @@ runTests = async()=> {
         test("Check that calling getTotalLines when each value == 1 will return the expected number (4)", ()=> {
             tallyTest.incrementCodeLines();
             tallyTest.incrementBlankLines();
+            /* Although we increment MLCOmmentBlocks, this should not be included in our total. */
             tallyTest.incrementMLCommentBlocks();
             tallyTest.incrementMLCommentLines();
             tallyTest.incrementSLComments();
