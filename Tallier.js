@@ -7,6 +7,8 @@ class Tallier {
     }
 
     tallyLine (matches) {
+        if (!matches) throw new Error("Cannot call Tallier without first passing lines through PatternMatcher");
+
         if (matches.length != 0) {
             let lastState = matches[0];
             for (let i in matches) {
