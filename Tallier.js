@@ -7,10 +7,10 @@ class Tallier {
     }
 
     tallyLine (matches) {
-        if (!matches) throw new Error("Cannot call Tallier without first passing lines through PatternMatcher");
+        if (!matches || !Array.isArray(matches)) throw new Error("Cannot call Tallier without first passing lines through PatternMatcher");
 
         if (matches.length != 0) {
-            let lastState = matches[0];
+            let lastMatch = matches[0];
             for (let i in matches) {
                 switch (matches[i]) {
                     case "blankLine":
@@ -23,7 +23,7 @@ class Tallier {
                     break;
     
                     case "comment_ML_EndComment":
-                        if (lastState != 'comment_ML_StartComment') {
+                        if (lastMatch != 'comment_ML_StartComment') {
                             this.tally.incrementMLCommentLines();
                         }
                         this.tally.incrementMLCommentBlocks();
@@ -41,7 +41,7 @@ class Tallier {
                     default: 
                         throw new Error(`Bad match value, unable to find: ${matches[i]}`);
                 }
-                lastState = matches[i];
+                lastMatch = matches[i];
             }
         } else {
             this.multiLine ? this.tally.incrementMLCommentLines() : this.tally.incrementCodeLines();
