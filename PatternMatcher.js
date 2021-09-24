@@ -3,7 +3,7 @@ class PatternMatcher {
         this.regexList = new Map();
         this.regexList.set(/\/\*[\s\S]*?/, 'comment_ML_StartComment');
         this.regexList.set(/[\s\S]*?\*\//, 'comment_ML_EndComment');
-        this.regexList.set(/^(^\/\/.*)|^(\s.*\/\/.*)/, 'comment_SL_StartOfLine');
+        this.regexList.set(/^(\/\/.*)|^(\s.*\/\/.*)/, 'comment_SL_StartOfLine');
         this.regexList.set(/[^\s][^\/]\/\/.*/, 'comment_SL_EndOfLine');
         this.regexList.set(/(^(\r\n|\n|\r)$)|(^(\r\n|\n|\r))|^\s*$/gm, 'blankLine');
     }
