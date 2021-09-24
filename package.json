@@ -1,0 +1,24 @@
+{
+  "name": "code-line-counter",
+  "version": "1.0.0",
+  "description": "Count lines of working code in files, excluding blank lines, multi-line comments and single line comments. Each of the aforementioned properties gets counted too, alongside multi-line comment blocks. ",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/notthelewis/didactic-octo-waddle.git"
+  },
+  "keywords": [
+    "sloc",
+    "linecount",
+    "code-line-counter"
+  ],
+  "author": "Lewis Farnworth",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/notthelewis/didactic-octo-waddle/issues"
+  },
+  "homepage": "https://github.com/notthelewis/didactic-octo-waddle#readme"
+}

@@ -13,12 +13,23 @@ class TallyObject {
         };
     }
 
-    /* Higher order function, used to generate a simple addition function; which adds one or a user defined value 
-        to a property specified on generation. This reduces code repetition, and means that it's easier to add new properties in future.
+    /* Higher order function, used to generate a simple addition function; which adds one or a user defined value to a property specified on generation.
+        This reduces code repetition, and means that it's more robust when it comes to adding new properties.
     */
     incrementCounterProperty = (property) => {
-        return (value)=> {
-            value != undefined ? this.counter[property] += value : this.counter[property]++;
+        if (property && typeof(property) == "string" && this.counter.hasOwnProperty(property) && typeof this.counter[property] == "number") {
+            return (value)=> {
+                if (value && typeof(value) != "number") {
+                    throw new Error(`Bad addition for ${property} when trying to increment by value: ${value}`);
+                }
+                try {
+                    value != undefined ? this.counter[property] += value : this.counter[property]++;
+                } catch(e) {
+                    throw e;
+                }
+            }
+        } else {
+            throw new Error(`Unable to generate counter property incrementor for property name: ${property}`);
         }
     }
 
