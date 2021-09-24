@@ -33,7 +33,7 @@ class Tallier {
                     case "comment_SL_StartOfLine":
                         this.multiLine ? this.tally.incrementMLCommentLines() : this.tally.incrementSLComments();
                     break;
-    
+
                     case "comment_SL_EndOfLine": 
                         this.multiLine ? this.tally.incrementMLCommentLines() : this.tally.incrementCodeLines();
                     break;
