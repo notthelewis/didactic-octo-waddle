@@ -1,4 +1,3 @@
-const { hasUncaughtExceptionCaptureCallback } = require("process");
 const { Tallier } = require("../Tallier");
 
 runTests = async () => {
@@ -26,7 +25,7 @@ runTests = async () => {
         });
     }
 
-    comment_ML_StartComment_tests = () => {
+    multiLineTests = () => {
         test("Check that in a single line comment with multi-line syntax, both MLCommentLines and MLCommentBlocks are incremented- and that multiLine is set to false after", ()=> {
             let tallier = new Tallier();
             let testMatchesArray = ['comment_ML_StartComment', 'comment_ML_EndComment'];
@@ -44,11 +43,25 @@ runTests = async () => {
             tallier.tallyLine(['comment_ML_EndComment']);
 
             expect(tallier.tally.counter.MLCommentLines == 4 && tallier.tally.counter.MLCommentBlocks == 1).toStrictEqual(true);
+            expect(tallier.multiLine).toStrictEqual(false);
+        });
+
+        test("Ensure that an SLComment inside of an MLCommentBlock will not tally an SLComment, but will tally a MLCommentLine ", ()=> {
+            let tallier = new Tallier(); 
+            tallier.tallyLine(['comment_ML_StartComment']);
+            tallier.tallyLine([]);
+            tallier.tallyLine(['comment_SL_StartOfLine']);
+            tallier.tallyLine(['comment_SL_EndOfLine']);
+            tallier.tallyLine([]);
+            tallier.tallyLine(['comment_ML_EndComment']);
+            expect(tallier.tally.counter.MLCommentBlocks).toBe(1);
+            expect(tallier.tally.counter.MLCommentLines).toBe(6);
+            expect(tallier.tally.counter.SLComments).toBe(0);
         });
     }
 
-    describe("blankLine Tallier tests", () => blankLineTests());
-    describe("comment_ML_StartComment tests", ()=> comment_ML_StartComment_tests());
+    describe("blankLine tests", () => blankLineTests());
+    describe("multiLine comment tests", ()=> multiLineTests());
 }
 
 runTests();
