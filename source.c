@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 /* Multi-line on single-line */
+/*Multi-line on a single-line which doesn't have a space before or after the text.*/
 /* 
     Multi
     Line
