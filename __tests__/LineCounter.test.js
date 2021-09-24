@@ -8,8 +8,8 @@ integrationTest = () => {
             blankLines: 1,
             MLCommentBlocks: 2,
             MLCommentLines: 5,
-            SLComments: 1,
-            totalLines: 12
+            SLComments: 3,
+            totalLines: 14
         });
     });
 }
