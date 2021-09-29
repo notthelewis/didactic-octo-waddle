@@ -1,5 +1,6 @@
 class PatternMatcher {
     constructor() {
+        /* Create a map object using the regexes as the keys, and a friendly name for the values. */
         this.regexList = new Map();
         this.regexList.set(/\/\*[\s\S]*?/, 'comment_ML_StartComment');
         this.regexList.set(/[\s\S]*?\*\//, 'comment_ML_EndComment');
@@ -9,6 +10,7 @@ class PatternMatcher {
     }
 }
 
+/* Generator function to yield the friendly names of any matched objects */
 PatternMatcher.prototype.checkMatchGenerator = function* (line) {
     if (this.checkWhetherLineContainsRegex) {
         
@@ -21,6 +23,7 @@ PatternMatcher.prototype.checkMatchGenerator = function* (line) {
     return;
 }
 
+/* Run the generator function and return the full array once complete */
 PatternMatcher.prototype.checkMatch = function (line) {
     return [...this.checkMatchGenerator(line)];
 }

@@ -5,6 +5,7 @@ const
     args = process.argv.slice(2)
 ;
 
+/* Use a generator function to iterate over the process.args array */
 function* countAllFiles() {
     for (let i = 0; i < args.length; i++){
         fs.access(args[i], async e => {
@@ -26,4 +27,5 @@ function* countAllFiles() {
     return;
 }
 
+/* Call the generator function */
 [...countAllFiles()];
