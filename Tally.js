@@ -17,8 +17,10 @@ class TallyObject {
         This reduces code repetition, and means that it's more robust when it comes to adding new properties.
     */
     incrementCounterProperty = (property) => {
+        /* If property is valid */
         if (property && typeof(property) == "string" && this.counter.hasOwnProperty(property) && typeof this.counter[property] == "number") {
             return (value)=> {
+                /* If a specific incrementor is provided, check that it's a valid value */
                 if (value && typeof(value) != "number") {
                     throw new Error(`Bad addition for ${property} when trying to increment by value: ${value}`);
                 }
@@ -33,14 +35,17 @@ class TallyObject {
         }
     }
 
+    /* Incrementor functions for each property we're counting */
     incrementCodeLines  = v => this.incrementCounterProperty('codeLines')(v);
     incrementBlankLines = v => this.incrementCounterProperty('blankLines')(v);
     incrementMLCommentBlocks = v => this.incrementCounterProperty('MLCommentBlocks')(v);
     incrementMLCommentLines = v => this.incrementCounterProperty('MLCommentLines')(v);
     incrementSLComments = v => this.incrementCounterProperty('SLComments')(v);
 
-    /* Iterate over all of this.counter's properties, adding the property's value to totalLines.
-        When we get to totalLines propery, subtract MLCommentBlocks. This is because a comment block is a collection of lines.
+    /*  Run getTotalLines() once all other lines have been tallied.
+        This reduces the overal number of operations to (n+4) as opposed to (n*4), where n == number of lines
+        Iterate over all of this.counter's properties, adding the property's value to totalLines.
+        When we get to totalLines propery, subtract MLCommentBlocks. This is because a comment block is a collection of lines, not a single line.
         Subtract at end as it's less operations than checking if property == 'MLCommentBLock' every iteration.
     */
     getTotalLines = () => {
