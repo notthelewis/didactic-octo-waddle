@@ -12,9 +12,6 @@ class PatternMatcher {
 
 /* Generator function to yield the friendly names of any matched objects */
 PatternMatcher.prototype.checkMatchGenerator = function* (line) {
-    if (this.checkWhetherLineContainsRegex) {
-        
-    }
     for (regex of this.regexList) {
         if (regex[0].test(line)) {
             yield regex[1];
