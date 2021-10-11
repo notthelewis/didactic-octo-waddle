@@ -6,7 +6,14 @@ It's written in JS for the Node environment, and has absolutely zero third party
 To get started, you have to run `node ./main.js <path-to-file>.`
 Multiple file names can be passed as required: `node ./main.js <path-to-file1> <path-to-file-2> ... <path-to-file-x>`
 
+For example, to count the `source.c` file and the `main.js` file at the same time:
+```
+./main.js source.c main.js
+```
+
 There's no limit to how many files can be passed. Any code using 'C-like' comment syntax (C, C++, C#, JS, PHP, Java, CSS... probably others) can be read... Though I've only tested on Javascript and C.
+
+
 
 #### Problem statement
 
