@@ -5,27 +5,65 @@ const
     args = process.argv.slice(2)
 ;
 
-/* Use a generator function to iterate over the process.args array */
-function* countAllFiles() {
-    for (let i = 0; i < args.length; i++){
-        fs.access(args[i], async e => {
-            if (!e) {
-                let lineCounter = new LineCounter(args[i]);
+async function countAllFiles() { 
+    let toReturn = [];
 
-                let results = await lineCounter.startTally();
-                let toReturn = {};
-                toReturn.name = args[i];
-                toReturn.count = results;
-                // console.log(args[i], results);
-                console.log(toReturn);
-            } else {
-                console.log(e.message);
-            }
+    for (let i = 0; i < args.length; i++) {
+        try {
+            fs.accessSync(args[i])
+        } catch(e) {
+            console.log(`${args[i]} not accessible, code: ${e.code}`);
+            continue;
+        }
+        let
+            lineCounter = new LineCounter(args[i]),
+            results = await lineCounter.startTally()
+        ;
+
+        toReturn.push({
+            name: args[i],
+            count: results
         });
-        yield;
     }
-    return;
+
+    return toReturn;
 }
 
-/* Call the generator function */
-[...countAllFiles()];
+
+async function collateResults(resultSet) {
+    let totalCount = {
+        codeLines: 0,
+        blankLines: 0, 
+        MLCommentBlocks: 0,
+        MLCommentLines: 0,
+        SLComments: 0,
+        totalLines: 0
+    };
+
+    resultSet.forEach(result => {
+        Object.keys(totalCount).forEach(key => {
+            totalCount[key] += result.count[key] ;
+        });
+    })
+
+    return {
+        name: 'totalCount',
+        count: totalCount
+    }
+}
+
+async function main() {
+    let fileCounts = await countAllFiles();
+    
+    if (fileCounts.length <= 1) {
+        console.log("File count: ", fileCounts);
+    } else {
+        console.log("Individual file counts: ", fileCounts);
+        let collatedResults = await collateResults(fileCounts);
+        console.log("Collated totals: ", collatedResults);
+    }
+
+}
+
+
+main();
