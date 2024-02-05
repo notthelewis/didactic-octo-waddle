@@ -1,6 +1,17 @@
 # didactic-octo-waddle
 This project aims to count lines of working source code (i.e. excluding multi-line comments, single-line comments and blank lines) in any code using C-like syntax.
 
+### Quick notice
+
+This project was written to improve my JS and general programming knowledge when I was working at Senti. The overal goal
+was to learn the `facade` design pattern, as there was a place where I needed to use it for my day job. It's always crazy 
+looking at old code. This is 3 years old and feels like ancient history. If I wanted to redo this task, I wouldn't go 
+about it the same way. In fact, I think I might redo this just to make it abundantly apparent just how different I'd do
+it.
+
+### End of notice, start of README of old 
+
+
 It's written in JS for the Node environment, and has absolutely zero third party dependencies other than its runtime. 
 
 To get started, you have to run `node ./main.js <path-to-file>.`
