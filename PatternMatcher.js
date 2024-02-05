@@ -17,7 +17,6 @@ PatternMatcher.prototype.checkMatchGenerator = function* (line) {
             yield regex[1];
         }
     }
-    return;
 }
 
 /* Run the generator function and return the full array once complete */
