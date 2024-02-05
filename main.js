@@ -1,9 +1,7 @@
-const { LineCounter } = require('./LineCounter');
+const fs = require('fs');
+const args = process.argv.slice(2);
 
-const
-    fs = require('fs'),
-    args = process.argv.slice(2)
-;
+const { LineCounter } = require('./LineCounter');
 
 async function countAllFiles() { 
     let toReturn = [];
@@ -15,10 +13,9 @@ async function countAllFiles() {
             console.log(`${args[i]} not accessible, code: ${e.code}`);
             continue;
         }
-        let
-            lineCounter = new LineCounter(args[i]),
-            results = await lineCounter.startTally()
-        ;
+
+        const lineCounter = new LineCounter(args[i]);
+        const results = await lineCounter.startTally();
 
         toReturn.push({
             name: args[i],
@@ -53,7 +50,7 @@ async function collateResults(resultSet) {
 }
 
 async function main() {
-    let fileCounts = await countAllFiles();
+    const fileCounts = await countAllFiles();
     
     if (fileCounts.length <= 1) {
         console.log("File count: ", fileCounts);
@@ -64,6 +61,5 @@ async function main() {
     }
 
 }
-
 
 main();
