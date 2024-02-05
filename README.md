@@ -7,7 +7,8 @@ This project was written to improve my JS and general programming knowledge when
 was to learn the `facade` design pattern, as there was a place where I needed to use it for my day job. It's always crazy 
 looking at old code. This is 3 years old and feels like ancient history. If I wanted to redo this task, I wouldn't go 
 about it the same way. In fact, I think I might redo this just to make it abundantly apparent just how different I'd do
-it.
+it. Considering this is 3 year old JavaScript, it still runs just as well as the day I finished it. I'd attribute that
+to the lack of dependencies but I'm still quite happy that I could just boot it up and run it. Makes me a little happier
 
 ### End of notice, start of README of old 
 
