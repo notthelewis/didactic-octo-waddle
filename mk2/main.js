@@ -67,11 +67,11 @@ function countAllFiles() {
                     _c = args_1_1.value;
                     _d = false;
                     arg = _c;
+                    // Skip inaccessible files
                     try {
                         (0, fs_1.accessSync)(arg);
                     }
                     catch (e) {
-                        // console.log(`{"${arg}": "${(e as Error).message}"}`)
                         return [3 /*break*/, 5];
                     }
                     lineCounter = new lineCounter_1.default();
@@ -144,5 +144,3 @@ function calculateTotal(files) {
 countAllFiles().then(calculateTotal).then(function (results) {
     console.log('{"results":', JSON.stringify(results), "}");
 });
-// countAllFiles().then((results: CountedFile[]) => {
-// })
