@@ -4,7 +4,7 @@
   "description": "Count lines of working code in files, excluding blank lines, multi-line comments and single line comments. Each of the aforementioned properties gets counted too, alongside multi-line comment blocks. ",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx jest __tests__/**.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/notthelewis/didactic-octo-waddle/issues"
   },
-  "homepage": "https://github.com/notthelewis/didactic-octo-waddle#readme"
+  "homepage": "https://github.com/notthelewis/didactic-octo-waddle#readme",
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0"
+  }
 }
