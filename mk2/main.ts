@@ -13,7 +13,7 @@ interface CountedFile {
 async function countAllFiles(): Promise<CountedFile[]> {
     const toReturn: CountedFile[] = []
 
-    for await (const arg of args) {
+    for (const arg of args) {
         // Skip inaccessible files
         try {
             accessSync(arg)
@@ -65,3 +65,5 @@ async function calculateTotal(files: CountedFile[]): Promise<CountedFile[]>  {
 countAllFiles().then(calculateTotal).then((results: CountedFile[])=> {
     console.log('{"results":', JSON.stringify(results), "}")
 })
+
+
